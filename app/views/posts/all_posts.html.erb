@@ -3,12 +3,14 @@
 <% @posts.each do |post| %>
   <div class="post_container">
     <h1 class="post_title"><%= link_to post.title, user_post_path(post.user.id, post) %></h1>
-    <p class="posts_content"><%= post.post_content %></p>
+    <div class="posts_content">
+      <p><%= post.post_content %></p>
+    </div>
   </div>
   <div class="post_footer">
-    <p>
-      <span class="post_username"><%= link_to post.user.username, user_posts_path(post.user.id) %></span>
-      <span class="post_time"><%= post.created_at.strftime("%b %e, %Y - %l:%M%p")%></span>
-    </p>
+    <div class="footer_container">
+        <span class="post_username"><%= link_to post.user.username, user_posts_path(post.user.id) %></span>
+        <span class="post_time"><%= post.created_at.strftime("%b %e, %Y - %l:%M%p")%></span>
+    </div>
   </div>
 <% end %>

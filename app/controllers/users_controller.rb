@@ -3,6 +3,16 @@ class UsersController < ApplicationController
   def show
   end
 
+  def username_home
+    if User.find_by(username: params[:username])
+      @user = User.find_by(username: params[:username])
+      redirect_to user_posts_path(@user)
+    else
+      flash[:message] = "username not found"
+      redirect_to "/"
+    end
+  end
+
   def homepage
   end
 

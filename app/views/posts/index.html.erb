@@ -1,8 +1,18 @@
-<h1>All Posts by user <%=User.find(params[:user_id]).username%></h1>
+<h1 class = "title">All Posts by user <%=User.find(params[:user_id]).username%></h1>
+<% if params[:user_id].to_i == session[:user_id].to_i %>
+  <%=link_to "Edit Profile", user_path(session[:user_id]), class: "edit_profile"%>
+<% end %>
 <% @user_posts = @posts.where(user_id: params[:user_id]) %>
 <% @user_posts.each do |post| %>
-  <h1><%= link_to post.title, user_post_path(post.user.id, post) %></h1>
-  <h4><%= post.created_at.strftime("%b %e, %Y - %l:%M%p")%></h4>
-  <h4><%= post.user.username %></h4>
-  <p><%= post.post_content %></p>
+  <div class="post_container">
+    <h1 class = "post_title"><%= link_to post.title, user_post_path(post.user.id, post) %></h1>
+    <div class="posts_content">
+      <p><%= post.post_content %></p>
+    </div>
+  </div>
+  <div class="post_footer">
+    <div class="footer_container">
+      <div class="post_time_show"><%= post.created_at.strftime("%b %e, %Y - %l:%M%p")%></div>
+    </div>
+  </div>
 <% end %>

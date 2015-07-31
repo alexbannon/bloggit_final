@@ -57,11 +57,13 @@ a {
   border-right: 5px solid rgb(180, 180, 180);
   max-width: 800px;
   margin: 0 auto 0 auto;
+  width: 90%;
 }
 .comment_container {
   display: block;
   max-width: 800px;
   margin: 0 auto 0 auto;
+  width: 90%;
 }
 
 .post_footer {
@@ -72,6 +74,8 @@ a {
   border-radius: 5px;
   margin: 0 auto 25px auto;
   max-width: 800px;
+  width: 90%;
+  height: 30px;
 }
 
 .post_title {
@@ -79,11 +83,45 @@ a {
   text-decoration: underline;
   color: maroon;
 }
-.post_content {
-  text-align: justify;
+.posts_content, .footer_container {
+  margin: 0 20px 0 20px;
 }
 
 .edit_delete {
   display: block;
   margin: 0 auto;
+}
+.comment_submit {
+  display: inline;
+}
+.single_comment {
+  margin: 0 auto 15px auto;
+}
+.delete_post_button {
+  display: inline-block;
+  text-align: right;
+  float: right;
+  margin: 0 5% 0 0;
+}
+.edit_post {
+  margin: 0 0 0 5%;
+}
+.show_comment {
+  margin: 15px auto 0 auto;
+  width: 90%;
+}
+.post_time {
+  float: right;
+}
+.post_time_show {
+  margin: 0 auto;
+  text-align: center;
+}
+a.edit_profile {
+  text-decoration: none;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 2em;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
