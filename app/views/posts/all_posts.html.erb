@@ -1,4 +1,4 @@
-<%= flash[:not_signed_in] %>
+<h4 class= "title"><%= flash[:message] %></h4>
 <h1 class="title">All Posts</h1>
 <% @posts.each do |post| %>
   <div class="post_container">

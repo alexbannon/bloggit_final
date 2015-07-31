@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
   def show
+    if params[:id].to_i == session[:user_id].to_i
+      @user = User.find(session[:user_id])
+    else
+      @user = User.find(params[:id])
+      flash[:message] = "You must be signed in as #{@user.username} to access this page"
+      redirect_to "/"
+    end
   end
 
   def username_home
@@ -37,7 +44,24 @@ class UsersController < ApplicationController
         return
       end
     end
-    flash[:sign_in_message] = message
+    flash[:message] = message
+    redirect_to :back
+  end
+
+  def update
+    if params[:user][:username] == "" || params[:user][:password_digest] == "" || params[:user][:email] == ""
+      message = "fields cannot be blank."
+    else
+      if !session[:user_id].to_i == params[:id].to_i
+        message = "Error: Not logged in. How did you even get here? Tisk tisk."
+      else
+        @user = User.find(session[:user_id].to_i)
+        @user.update!(username: params[:user][:username], password_digest: BCrypt::Password.create(params[:user][:password_digest].strip), email: params[:user][:email])
+        redirect_to user_posts_path(@user)
+        return
+      end
+    end
+    flash[:message] = message
     redirect_to :back
   end
 
@@ -64,8 +88,8 @@ class UsersController < ApplicationController
         end
       end
     end
-    flash[:sign_in_message] = message
-    redirect_to "/"
+    flash[:message] = message
+    redirect_to :back
   end
 
   def sign_out

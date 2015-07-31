@@ -1,3 +1,4 @@
+<h4 class = "title"><%= flash[:message] %></h4>
 <%= form_for [@user, @post] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>

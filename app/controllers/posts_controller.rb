@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @post = Post.new
       @user = User.find(params[:user_id])
     else
-      flash[:not_signed_in] = "You need to sign in to create a post!"
+      flash[:message] = "You need to sign in to create a post!"
       redirect_to "/"
     end
   end
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   def create
     if !session[:is_signed_in]
-      flash[:not_signed_in] = "You need to sign in to create a post!"
+      flash[:message] = "You need to sign in to create a post!"
       redirect_to "/"
     else
       @user = User.find(params[:user_id])
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @user = User.find(params[:user_id])
     else
-      flash[:not_signed_in] = "You are not authorized to edit this post."
+      flash[:message] = "You are not authorized to edit this post."
       redirect_to "/"
       return
     end
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
       redirect_to user_post_path(@user, @post)
       return
     else
-      flash[:not_signed_in] = "You are not authorized to edit this post."
+      flash[:message] = "You are not authorized to edit this post."
       redirect_to "/"
     end
   end
