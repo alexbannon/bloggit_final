@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
+    @comment = Comment.new
   end
 
   def create
@@ -27,6 +31,36 @@ class PostsController < ApplicationController
       @post = Post.create!(post_params)
       redirect_to user_post_path(@user, @post)
     end
+  end
+
+  def edit
+    if session[:user_id].to_i == params[:user_id].to_i
+      @post = Post.find(params[:id])
+      @user = User.find(params[:user_id])
+    else
+      flash[:not_signed_in] = "You are not authorized to edit this post."
+      redirect_to "/"
+      return
+    end
+  end
+
+  def update
+    if session[:user_id].to_i == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @post = Post.find(params[:id])
+      @post.update(post_params)
+      redirect_to user_post_path(@user, @post)
+      return
+    else
+      flash[:not_signed_in] = "You are not authorized to edit this post."
+      redirect_to "/"
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path(session[:user_id])
   end
 
   private

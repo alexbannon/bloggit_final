@@ -1,6 +1,6 @@
 <%= flash[:not_signed_in] %>
 <% @posts.each do |post| %>
-  <h1><%= post.title %> </h1>
+  <h1><%= link_to post.title, user_post_path(post.user.id, post) %></h1>
   <h4><%= post.created_at.strftime("%b %e, %Y - %l:%M%p")%></h4>
   <h4><%= post.user.username %></h4>
   <p><%= post.post_content %></p>

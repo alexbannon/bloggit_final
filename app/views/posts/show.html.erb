@@ -1,4 +1,27 @@
 <h1><%= @post.title %></h1>
+<% if @post.user.id == session[:user_id] %>
+  <%= link_to "(edit post)", edit_user_post_path(session[:user_id], @post) %>
+  <%= form_for [@user, @post], method: :delete do |f| %>
+    <%= f.submit "Delete Post!" %>
+  <% end %>
+<% end %>
 <h4><%= @post.created_at.strftime("%b %e, %Y - %l:%M%p")%></h4>
 <h4><%= @post.user.username %></h4>
 <p><%= @post.post_content %></p>
+<h4>Comments:</h4>
+<% @post.comments.each do |comment| %>
+  <p><%=comment.created_at.strftime("%l:%M%p")%>: <%=comment.user.username%> wrote: <%=comment.comment_content %>
+    <% if comment.user.id == session[:user_id] %>
+      <%= form_tag(user_post_comment_path(session[:user_id], @post, comment), method: "delete") do %>
+        <input type = "submit" value = "(-)" />
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
+<% if session[:is_signed_in] %>
+  <%= form_tag(user_post_comments_path(session[:user_id], @post), method: "post") do %>
+    <label name = "comment_content">Comment:</label>
+    <input type = "textarea" name = "comment_content"/>
+    <input type = "submit" value = "Comment" />
+  <% end %>
+<% end %>

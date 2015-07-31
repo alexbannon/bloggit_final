@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   def new
   end
 
+  def index
+  end
+
   def create
     if params[:user][:username] == "" || params[:user][:password_digest] == "" || params[:user][:email] == ""
       message = "fields cannot be blank."
