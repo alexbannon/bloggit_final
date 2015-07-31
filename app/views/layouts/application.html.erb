@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BloggitFinal</title>
+  <title>Blogg.it</title>
+  <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to "Blogg.it", "/" %>
+  <div id= "menu_bar_container">
+  <%= link_to "Blogg.it", "/", id: "logo" %>
   <% if session[:is_signed_in] %>
-    <%= link_to "Sign-out!", "/sign_out" %>
-    <%= link_to "New Post", new_user_post_path(session[:user_id]) %>
+    <%= link_to "New Post", new_user_post_path(session[:user_id]), class: "menu_2" %>
+    <%= link_to "Sign-out!", "/sign_out", class: "menu_3" %>
   <% else %>
-    <%= link_to "Sign Up!", new_user_path %>
-    <%= link_to "Sign-in!", "/sign_in" %>
+    <%= link_to "Sign Up!", new_user_path, class: "menu_2" %>
+    <%= link_to "Sign-in!", "/sign_in", class: "menu_3" %>
   <% end %>
+  </div>
+  <div id="bottom_bar"></div>
 
 <%= yield %>
 

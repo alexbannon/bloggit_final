@@ -1,13 +1,22 @@
-<h1><%= @post.title %></h1>
+<div class="comment_container">
+<h1 class="post_title"><%= @post.title %></h1>
 <% if @post.user.id == session[:user_id] %>
   <%= link_to "(edit post)", edit_user_post_path(session[:user_id], @post) %>
   <%= form_for [@user, @post], method: :delete do |f| %>
     <%= f.submit "Delete Post!" %>
   <% end %>
 <% end %>
-<h4><%= @post.created_at.strftime("%b %e, %Y - %l:%M%p")%></h4>
-<h4><%= @post.user.username %></h4>
-<p><%= @post.post_content %></p>
+</div>
+<div class="post_container">
+  <p><%= @post.post_content %></p>
+</div>
+<div class="post_footer">
+  <p>
+    <span><%= @post.created_at.strftime("%b %e, %Y - %l:%M%p")%></span>
+    <span><%= link_to @post.user.username, user_posts_path(@post.user.id) %></span>
+  </p>
+</div>
+<div class="comment_container">
 <h4>Comments:</h4>
 <% @post.comments.each do |comment| %>
   <p><%=comment.created_at.strftime("%l:%M%p")%>: <%=comment.user.username%> wrote: <%=comment.comment_content %>
@@ -25,3 +34,4 @@
     <input type = "submit" value = "Comment" />
   <% end %>
 <% end %>
+</div>

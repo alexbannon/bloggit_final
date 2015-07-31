@@ -13,3 +13,77 @@
  *= require_tree .
  *= require_self
  */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: lemonchiffon;
+}
+
+#menu_bar_container a {
+  text-decoration: none;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 2em;
+  margin: 0 auto;
+  display: inline-block;
+  width: 32.5%;
+  text-align: center;
+}
+.title {
+  font-family: 'Shadows Into Light', cursive;
+  text-align: center;
+  color: maroon;
+}
+
+a {
+  text-decoration: none;
+  color: maroon;
+}
+
+#bottom_bar {
+  width: 100%;
+  height: 4px;
+  background: black;
+  border: 2px solid black;
+  border-radius: 35px;
+  margin: 0 auto 25px auto;
+}
+
+.post_container {
+  display: block;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+  border-right: 5px solid rgb(180, 180, 180);
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+.comment_container {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+
+.post_footer {
+  display: block;
+  border: 1px solid rgb(160, 160, 160);
+  border-bottom: 5px solid rgb(180, 180, 180);
+  border-right: 5px solid rgb(180, 180, 180);
+  border-radius: 5px;
+  margin: 0 auto 25px auto;
+  max-width: 800px;
+}
+
+.post_title {
+  text-align: center;
+  text-decoration: underline;
+  color: maroon;
+}
+.post_content {
+  text-align: justify;
+}
+
+.edit_delete {
+  display: block;
+  margin: 0 auto;
+}

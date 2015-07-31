@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def show
+  end
 
+  def homepage
   end
 
   def new
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
           cookies[:username] = params[:user][:username]
           session[:is_signed_in] = true
           session[:user_id] = User.find_by(username: params[:user][:username]).id
-          redirect_to "/"
+          redirect_to user_posts_path(session[:user_id])
           return
         end
       end
