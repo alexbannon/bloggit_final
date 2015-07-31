@@ -30,9 +30,11 @@ class PostsController < ApplicationController
     if !session[:is_signed_in]
       flash[:message] = "You need to sign in to create a post!"
       redirect_to :back
-    elsif params[:post][:title] == "" || params[:post][:post_content] = ""
+      return
+    elsif params[:post][:title] == "" || params[:post][:post_content] == ""
       flash[:message] = "Posts and content cannot be blank!"
       redirect_to :back
+      return
     else
       @user = User.find(params[:user_id])
       @post = Post.create!(post_params)
