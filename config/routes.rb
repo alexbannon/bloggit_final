@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "sign_out" => "users#sign_out"
   get ":username" => "users#username_home"
   resources :users do
+    # TODO: member route for username, sign_in, etc
     resources :posts do
       resources :comments
     end

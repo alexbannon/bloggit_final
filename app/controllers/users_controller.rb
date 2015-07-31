@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # TODO: before_filter :ensure_correct_user, only: [:edit}
 
   def show
     if params[:id].to_i == session[:user_id].to_i
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # TODO: move logic to User validations
     if params[:user][:username] == "" || params[:user][:password_digest] == "" || params[:user][:email] == ""
       message = "fields cannot be blank."
     else
