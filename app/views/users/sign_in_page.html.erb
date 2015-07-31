@@ -1,0 +1,5 @@
+<%= form_tag("/sign_in", method: "post") do %>
+  <input type="text" name="user[username]" placeholder="username" />
+  <input type="password" name="user[password_digest]" placeholder="password" />
+  <input type="submit" value="Sign in" />
+<% end %>

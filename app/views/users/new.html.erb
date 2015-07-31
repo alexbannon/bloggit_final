@@ -1,0 +1,7 @@
+<h2><%= flash[:sign_in_message] %></h2>
+<%= form_tag(users_path(), method: "post") do %>
+  <input type="text" name="user[username]" placeholder="username" />
+  <input type="password" name="user[password_digest]" placeholder="password" />
+  <input type="text" name="user[email]" placeholder="email address" />
+  <input type="submit" value="Sign Up!" />
+<% end %>

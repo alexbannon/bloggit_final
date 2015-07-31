@@ -1,0 +1,4 @@
+<h1><%= @post.title %></h1>
+<h4><%= @post.created_at.strftime("%b %e, %Y - %l:%M%p")%></h4>
+<h4><%= @post.user.username %></h4>
+<p><%= @post.post_content %></p>
