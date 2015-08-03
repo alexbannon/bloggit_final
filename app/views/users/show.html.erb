@@ -1,5 +1,6 @@
 <h1 class = "title"><%=@user.username%></h1>
 <h4 class = "title"><%= flash[:message] %></h4>
+
 <%= form_tag(user_path(@user), method: "put") do %>
   <input type="text" name="user[username]" value = <%=@user.username%> />
   <input type="password" name="user[password_digest]" placeholder = "password" />

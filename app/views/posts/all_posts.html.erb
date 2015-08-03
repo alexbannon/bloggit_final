@@ -1,5 +1,7 @@
 <h4 class= "title"><%= flash[:message] %></h4>
 <h1 class="title">All Posts</h1>
+
+<!-- lots of duplication here between all posts and posts index, use a partial to refactor -->
 <% @posts.each do |post| %>
   <div class="post_container">
     <h1 class="post_title"><%= link_to post.title, user_post_path(post.user.id, post) %></h1>

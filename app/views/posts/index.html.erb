@@ -2,6 +2,11 @@
 <% if params[:user_id].to_i == session[:user_id].to_i %>
   <%=link_to "Edit Profile", user_path(session[:user_id]), class: "edit_profile"%>
 <% end %>
+
+<!-- this should be done in the controller! It's bad practice to create any instance variables
+in the view -->
+<!-- also, if you set @posts correctly in both index and all_posts, then you can reuse the same view for both 
+  actions, since they both just render a list of posts -->
 <% @user_posts = @posts.where(user_id: params[:user_id]) %>
 <% @user_posts.each do |post| %>
   <div class="post_container">

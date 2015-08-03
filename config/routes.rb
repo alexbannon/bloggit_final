@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "sign_in" => "users#sign_in_page"
   post "sign_in" => "users#sign_in"
   get "sign_out" => "users#sign_out"
+  
   get ":username" => "users#username_home"
   resources :users do
     # TODO: member route for username, sign_in, etc
