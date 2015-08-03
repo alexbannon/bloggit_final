@@ -71,6 +71,9 @@ class UsersController < ApplicationController
   end
 
   def sign_in
+    # technically, the field where the user types their password should be
+    # params[:user][:password], not [:password_digest], since the digest is the 
+    # encyrpted form.
     if params[:user][:username].strip == "" || params[:user][:password_digest].strip == ""
       message = "fields cannot be blank"
     else
@@ -83,7 +86,12 @@ class UsersController < ApplicationController
           message = "Your password's wrong!"
         else
           cookies[:username] = params[:user][:username]
+          
+          # I know this was in Robin's lesson, but we can just check if session[:user_id] exists to see if a user is signed
+          # in elsewhere in our app
           session[:is_signed_in] = true
+
+          # you alreaedy have a variable above `@user`... use it here!
           session[:user_id] = User.find_by(username: params[:user][:username]).id
           redirect_to user_posts_path(session[:user_id])
           return
